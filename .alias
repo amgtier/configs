@@ -1,0 +1,15 @@
+alias sea="source ~/.alias"
+alias ca="cat ~/.alias"
+
+alias testgit="ssh -T git@github.com"
+
+alias ll="ls -l"
+
+# git commands
+alias g="git"
+alias gb="git branch"
+alias gc="git checkout"
+alias gs="git status"
+alias gl="git log"
+
+source .kubealias

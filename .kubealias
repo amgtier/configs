@@ -1,0 +1,22 @@
+# kubectl
+alias klist="kubectl --cluster=stg-batch --context=stg-batch -nbackend get pod | grep tzu-hsiang.chao"
+
+function kbash() {
+    podName=$(klist | awk '{print $1}');
+    echo "SSH into $podName\n";
+    kubectl --cluster=stg-batch --context=stg-batch -nbackend exec -it -c rq-worker-container $podName bash
+}
+
+function kbashpod() {
+    kubectl --cluster=stg-batch --context=stg-batch -nbackend exec -it -c rq-worker-container $1 bash
+}
+
+function kcp() {
+    podName=$(klist | awk '{print $1}');
+    echo "cp to $podName\n";
+    kubectl --cluster=stg-batch --context=stg-batch -nbackend cp -c rq-worker-container "$2" $podName:"$3"
+}
+
+function kcppod() {
+    kubectl --cluster=stg-batch --context=stg-batch -nbackend cp -c rq-worker-container "$2" "$1":"$3"
+}
